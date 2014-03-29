@@ -1,9 +1,9 @@
-Zoo (week 4's saturday is teamwork day again :))
-===
+##Zoo (week 4's saturday is teamwork day again :))
+
 
 ###We'll be writing a program that will (hopefully) simulate the live going on in the zoo.
 Here are descriptions of the classes you should have to complete the task, but
-of course you're free the add more if you feel you'll need to.<br>
+of course you're free to add more if you feel you'll need to.<br>
 There is also a database file that has a table with possible animals, which
 you should use too ^^
 
@@ -23,22 +23,22 @@ when getting older (nearer to the average life expectancy = higher chance).
 class Zoo should have:
 
 * animals, of course
-* capacity (how many animals can it accommodates)
+* capacity (how many animals can it accommodate)
 * budget (the money it has at the moment)
 
 The zoo can accommodate an animal, it has daily incomes depending on
 how much animals it has (the more animals it has, the more interesting it will
 be to go into that zoo, right?) and daily outcomes depending on how much do the
 animals eat (every food has it's price)
-(and, sadly, sometimes animals happen to die :/)
-Also, animals can reproduce, according to their breed interval (how often do they mate)
+(and, sadly, sometimes animals happen to die :/).
+Also, our animals reproduce half an year (6 months) after their gestation period is over.
 
-animal brings 60$ back to the zoo per day<br>
+an animal brings 60$ back to the zoo per day<br>
 one kilo meat costs 4$<br>
 one kilo grass, foliage or bamboo costs 2$<br>
 
 We wrote for you a database with animals (check it with sqlitebrowser, if you still don't
-have it, ask!) which you can (should/must) use to write your classes.
+have it, now's the time :)) which you can (should/must) use to write your classes.
 The table contains the following columns:
 * species (for example, a tiger)
 * life expectancy - how long is the species expected to live
