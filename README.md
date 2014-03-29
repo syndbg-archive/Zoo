@@ -8,7 +8,8 @@ There is also a database file that has a table with possible animals, which
 you should use too ^^
 
 
-class Animal should have:
+#####class Animal should have:
+
 
 * species
 * age
@@ -20,7 +21,7 @@ An animal can grow (increase it's weight and age),
 can eat (consume food). It also has increased chance of dying
 when getting older (nearer to the average life expectancy = higher chance).
 
-class Zoo should have:
+#####class Zoo should have:
 
 * animals, of course
 * capacity (how many animals can it accommodate)
@@ -37,7 +38,8 @@ an animal brings 60$ back to the zoo per day<br>
 one kilo meat costs 4$<br>
 one kilo grass, foliage or bamboo costs 2$<br>
 
-We wrote for you a database with animals (check it with sqlitebrowser, if you still don't
+#####We wrote for you a database with animals
+(check it with sqlitebrowser, if you still don't
 have it, now's the time :)) which you can (should/must) use to write your classes.
 The table contains the following columns:
 * species (for example, a tiger)
