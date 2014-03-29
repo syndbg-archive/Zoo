@@ -34,6 +34,12 @@ animals eat (every food has it's price)
 (and, sadly, sometimes animals happen to die :/).
 Also, our animals reproduce half an year (6 months) after their gestation period is over.
 
+#####How an animal is born:
+If a male and a female of the same species are present,
+after gestation period a new animal is born.
+After an animal is born, after 6 months the female is ready
+to reproduce again. There's only one baby animal which gender is 50/50 chance to be male or female.
+
 an animal brings 60$ back to the zoo per day<br>
 one kilo meat costs 4$<br>
 one kilo grass, foliage or bamboo costs 2$<br>
