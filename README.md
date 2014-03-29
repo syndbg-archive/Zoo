@@ -1,4 +1,5 @@
-# Zoo (week 4's saturday is teamwork day again :))
+Zoo (week 4's saturday is teamwork day again :))
+===
 
 ###We'll be writing a program that will (hopefully) simulate the live going on in the zoo.
 Here are descriptions of the classes you should have to complete the task, but
