@@ -20,7 +20,17 @@ class Zoo():
         return self._budget
 
     def get_animals(self):
-        return self.accommodated_animals
+        animals = []
+        for animal_object in self.accommodated_animals:
+            animal = "<{}>: <{}>, <{}>, <{}>".format(animal_object.get_name(), animal_object.get_species(), animal_object.get_age(), animal_object.get_weight())
+            animals.append(animal)
+        return "\n".join(animals)
+
+    def get_daily_expenses(self):
+        daily_expenses = 0
+        for animal in self.accommodated_animals:
+            daily_expenses += animal.get_expenses()
+        return daily_expenses
 
     def add_animal(self, animal):
         if self.is_there_space() is True:

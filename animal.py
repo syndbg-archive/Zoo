@@ -3,6 +3,8 @@ import sqlite3
 
 class Animal():
     def __init__(self, species, age, name, gender, weight):
+        self.conn = sqlite3.connect("animals.db")
+        self.cursor = self.conn.cursor()
         self.species = species
         self.current_age = age
         self.name = name
@@ -10,12 +12,16 @@ class Animal():
         self.food_type = self.determine_food_type()
         self.weight = weight
         self.alive = True
-        self.conn = sqlite3.connect("animals.db")
-        self.cursor = self.conn.cursor()
+        self.gestation = self.fetch_gestation()
 
-    def get_expenses(self):
-        if self.food_type == "carnivore":
-            return 4 * (self.get_food_weight_ratio() * self.weight)
+    def get_name(self):
+        return self.name
+
+    def get_species(self):
+        return self.species
+
+    def get_food_type(self):
+        return self.food_type
 
     def get_food_weight_ratio(self):
         return self.fetch_data("SELECT food_weight_ratio FROM animals WHERE species = ?;")
@@ -25,6 +31,15 @@ class Animal():
 
     def get_weight(self):
         return self.weight
+
+    def get_expenses(self):
+        if self.food_type == "carnivore":
+            return 4 * (self.get_food_weight_ratio() * self.weight)
+        elif self.food_type == "herbivore":
+            return 2 * (self.get_food_weight_ratio() * self.weight)
+
+    def fetch_gestation(self):
+        return self.fetch_data("SELECT gestation FROM animals WHERE species = ?;")
 
     def determine_food_type(self):
         query = "SELECT food_type FROM animals WHERE species = ?;"
