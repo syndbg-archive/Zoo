@@ -11,7 +11,6 @@ def create_animals_table(cursor):
                 average_weight int,
                 weight_age_ratio real,
                 food_weight_ratio real)'''
-
     cursor.execute(create_query)
 
 
@@ -25,11 +24,13 @@ def insert_species_into_table(cursor, species, life_expectancy,
         weight_age_ratio, food_weight_ratio))
 
 
-def main():
-    conn = sqlite3.connect("animals.db")
+def create_database(database_name):
+    conn = sqlite3.connect(database_name)
     cursor = conn.cursor()
-
-    create_animals_table(cursor)
+    try:
+        create_animals_table(cursor)
+    except sqlite3.OperationalError:
+        return "Error: Database already exists."
 
     animals = [("lion", 15, "carnivore", 3, 2, 200, 7.5, 0.035),
                 ("tiger", 20, "carnivore", 4, 1, 250, 12, 0.06),
@@ -42,12 +43,15 @@ def main():
                 ("hippo", 45, "herbivore", 8, 30, 1500, 2.72, 25),
                 ("cougar", 13, "carnivore", 3, 14, 80, 0.42, 0.075),
                 ("goat", 18, "herbivore", 5, 5, 52, 0.217, 0.38)]
-
     for animal in animals:
         insert_species_into_table(cursor, *animal)
-
     conn.commit()
     conn.close()
+
+
+def main():
+    database_name = input("database name>")
+    create_database(database_name)
 
 
 if __name__ == '__main__':
