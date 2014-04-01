@@ -1,10 +1,6 @@
 # Zoo class
 
 
-# IMPORTS
-import sqlite3
-
-
 class Zoo():
     """docstring for Zoo"""
     def __init__(self, name, capacity, budget):
@@ -39,6 +35,6 @@ class Zoo():
         return True
 
     def is_there_space(self):
-        if self._current_capacity > 0 and self._max_capacity >= self._current_capacity:
+        if self._current_capacity > 0 and self._current_capacity <= self._max_capacity:
             return True
         return False

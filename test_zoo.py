@@ -27,6 +27,11 @@ class ZooTests(unittest.TestCase):
         self.assertTrue(self.zoo.add_animal("Tiger"))
         self.assertEqual(["Tiger"], self.zoo.get_animals())
 
+    def test_add_animal_when_no_space(self):
+        self.assertTrue(self.zoo.add_animal("Tiger"))
+        self.assertTrue(self.zoo.add_animal("Tiger"))
+        self.assertFalse(self.zoo.add_animal("Elephant"))
+
     def test_remove_animal(self):
         self.assertTrue(self.zoo.add_animal("Tiger"))
         self.assertEqual(["Tiger"], self.zoo.get_animals())
@@ -36,7 +41,7 @@ class ZooTests(unittest.TestCase):
     def test_is_there_space(self):
         self.assertTrue(self.zoo.is_there_space())
 
-    def test_is_there_space_whe_no_space(self):
+    def test_is_there_space_when_no_space(self):
         self.assertTrue(self.zoo.add_animal("Tiger"))
         self.assertTrue(self.zoo.add_animal("Lion"))
         self.assertFalse(self.zoo.is_there_space())
