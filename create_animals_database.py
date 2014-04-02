@@ -2,8 +2,7 @@ import sqlite3
 
 
 def create_animals_table(cursor):
-    create_query = '''create table if not exists
-        animals(species text,
+    create_query = '''CREATE TABLE animals(species text,
                 life_expectancy int,
                 food_type text,
                 gestation int,
@@ -47,11 +46,12 @@ def create_database(database_name):
         insert_species_into_table(cursor, *animal)
     conn.commit()
     conn.close()
+    return "Database <{}> created.".format(database_name)
 
 
 def main():
     database_name = input("database name>")
-    create_database(database_name)
+    print(create_database(database_name))
 
 
 if __name__ == '__main__':
