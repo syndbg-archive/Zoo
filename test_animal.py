@@ -30,6 +30,12 @@ class AnimalTest(unittest.TestCase):
     def test_get_age(self):
         self.assertEqual(1, self.tiger.get_age())
 
+    def test_get_can_breed(self):
+        self.assertTrue(self.tiger.get_can_breed())
+
+    def test_get_gestation(self):
+        self.assertEqual(4, self.tiger.get_gestation())
+
     def test_is_alive(self):
         self.assertTrue(self.tiger.is_alive())
 
@@ -71,6 +77,9 @@ class AnimalTest(unittest.TestCase):
 
     def test_get_expenses(self):
         self.assertEqual(self.tiger.weight * 4 * self.tiger.get_food_weight_ratio(), self.tiger.get_expenses())
+
+    def test_fetch_gestation_from_db(self):
+        self.assertEqual(4, self.tiger.fetch_gestation_from_db())
 
 
 # PROGRAM RUN

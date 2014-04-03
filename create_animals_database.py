@@ -2,21 +2,50 @@ import sqlite3
 
 
 def create_animals_table(cursor):
-    create_query = '''CREATE TABLE animals(species text,
-                life_expectancy int,
-                food_type text,
-                gestation int,
-                newborn_weight real,
-                average_weight int,
-                weight_age_ratio real,
-                food_weight_ratio real)'''
-    cursor.execute(create_query)
+    create_animals = '''CREATE TABLE animals(id INTEGER PRIMARY KEY,
+                        species text,
+                        life_expectancy int,
+                        food_type text,
+                        gestation int,
+                        newborn_weight real,
+                        average_weight int,
+                        weight_age_ratio real,
+                        food_weight_ratio real)'''
+    cursor.execute(create_animals)
+
+def create_accommodated_animals_table(cursor):
+    create_accommodated_animals = '''CREATE TABLE accommodated_animals(id INTEGER PRIMARY KEY,
+                        species text,
+                        age INTEGER,
+                        name text,
+                        gender BOOLEAN,
+                        weight REAL,
+                        gestation INTEGER
+                        )'''
+    cursor.execute(create_accommodated_animals)
+
+
+def create_zoos_table(cursor):
+    create_zoos = '''CREATE TABLE zoos(id INTEGER PRIMARY KEY,
+                    name text,
+                    capacity INTEGER,
+                    budget REAL)'''
+    cursor.execute(create_zoos)
+
+
+def create_animals_from_zoos_table(cursor):
+    create_animals_from_zoos = '''CREATE TABLE animals_from_zoos(id INTEGER PRIMARY KEY,
+                        zoo_id int,
+                        animal_id int,
+                        FOREIGN KEY(zoo_id) REFERENCES zoos(id),
+                        FOREIGN KEY(animal_id) REFERENCES accommodated_animals(id));'''
+    cursor.execute(create_animals_from_zoos)
 
 
 def insert_species_into_table(cursor, species, life_expectancy,
-        food_type, gestation, newborn_weight, average_weight,
-        weight_age_ratio, food_weight_ratio):
-    insert_query = "insert into animals values(?, ?, ?, ?, ?, ?, ?, ?)"
+                              food_type, gestation, newborn_weight, average_weight,
+                              weight_age_ratio, food_weight_ratio):
+    insert_query = "INSERT INTO animals values(NULL, ?, ?, ?, ?, ?, ?, ?, ?);"
     cursor.execute(insert_query,
         (species, life_expectancy, food_type,
         gestation, newborn_weight, average_weight,
@@ -29,7 +58,22 @@ def create_database(database_name):
     try:
         create_animals_table(cursor)
     except sqlite3.OperationalError:
-        return "Error: Database already exists."
+        return "Error: Table animals already exists."
+
+    try:
+        create_accommodated_animals_table(cursor)
+    except sqlite3.OperationalError:
+        return "Error: Table acc animals already exists."
+
+    try:
+        create_zoos_table(cursor)
+    except sqlite3.OperationalError:
+        return "Error: Table zoos already exists."
+
+    try:
+        create_animals_from_zoos_table(cursor)
+    except sqlite3.OperationalError:
+        return "Error: Table animals from zoos already exists."
 
     animals = [("lion", 15, "carnivore", 3, 2, 200, 7.5, 0.035),
                 ("tiger", 20, "carnivore", 4, 1, 250, 12, 0.06),

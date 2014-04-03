@@ -1,3 +1,7 @@
+# Animal class for Zoo
+
+
+# IMPORTS
 import sqlite3
 
 
@@ -12,7 +16,8 @@ class Animal():
         self.food_type = self.determine_food_type()
         self.weight = weight
         self.alive = True
-        self.gestation = self.fetch_gestation()
+        self.gestation = self.fetch_gestation_from_db()
+        self.cost = self.get_expenses()
 
     def get_name(self):
         return self.name
@@ -32,13 +37,16 @@ class Animal():
     def get_weight(self):
         return self.weight
 
+    def get_gestation(self):
+        return self.gestation
+
     def get_expenses(self):
         if self.food_type == "carnivore":
             return 4 * (self.get_food_weight_ratio() * self.weight)
         elif self.food_type == "herbivore":
             return 2 * (self.get_food_weight_ratio() * self.weight)
 
-    def fetch_gestation(self):
+    def fetch_gestation_from_db(self):
         return self.fetch_data("SELECT gestation FROM animals WHERE species = ?;")
 
     def determine_food_type(self):
@@ -79,7 +87,6 @@ class Animal():
         query = "SELECT life_expectancy FROM animals WHERE species = ?;"
         life_expectancy = self.fetch_data(query)
         if self.current_age >= life_expectancy:
-            print("I`m sorry , but the animal has died ... ")
             self.kill_animal()
             return self.is_alive()
         return self.is_alive()
