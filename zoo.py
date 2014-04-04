@@ -19,13 +19,6 @@ class Zoo():
     def get_budget(self):
         return self._budget
 
-    def get_animals(self):
-        animals = []
-        for animal_object in self.accommodated_animals:
-            animal = "<{}>: <{}>, <{}>, <{}>".format(animal_object.get_name(), animal_object.get_species(), animal_object.get_age(), animal_object.get_weight())
-            animals.append(animal)
-        return "\n".join(animals)
-
     def get_daily_expenses(self):
         daily_expenses = 0
         for animal in self.accommodated_animals:
@@ -48,3 +41,9 @@ class Zoo():
         if self._current_capacity > 0 and self._current_capacity <= self._max_capacity:
             return True
         return False
+
+    def see_animals(self):
+        animals = []
+        for animal in self.accommodated_animals:
+            animals.append("<{}>: <{}>, <{}>, <{}>".format(animal.get_name(), animal.get_species(), animal.get_age(), animal.get_weight()))
+        return "\n".join(animals)
